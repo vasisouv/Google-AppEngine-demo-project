@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee">
+    <servlet>
+        <servlet-name>EncryptServlet</servlet-name>
+        <servlet-class>com.vasisouv.webservices2017.aem17.servlets.EncryptServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EncryptServlet</servlet-name>
+        <url-pattern>/encrypt</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DecryptServlet</servlet-name>
+        <servlet-class>com.vasisouv.webservices2017.aem17.servlets.DecryptServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DecryptServlet</servlet-name>
+        <url-pattern>/decrypt</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>FindAnagramServlet</servlet-name>
+        <servlet-class>com.vasisouv.webservices2017.aem17.servlets.FindAnagramServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FindAnagramServlet</servlet-name>
+        <url-pattern>/findanagram</url-pattern>
+    </servlet-mapping>
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+</web-app>

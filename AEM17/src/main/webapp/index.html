@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Services Project</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/css/mdb.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<nav class="navbar navbar-toggleable-md navbar-dark stylish-color-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+           <span class="logo"><i class="fa fa-code logo" aria-hidden="true"></i> Web Services Project 2017 </span>
+        </a>
+        <a class="navbar-brand my-name" href="#">
+            <span> Souvatzis Vasileios (17) </span>
+        </a>
+    </div>
+</nav>
+
+<div class="container theme-showcase" role="main">
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Google App Engine Project</h2>
+                <p class="text-fluid">Use the following modules to access the datastore by inserting encrypted messages and retrieving them based on text and anagrams</p>
+                <div class="card">
+                    <h4 class="card-header unique-color white-text"><i class="fa fa-floppy-o header-icon" aria-hidden="true"></i> Insert an encrypted message into the datastore (/encrypt)</h4>
+                    <div class="card-block">
+
+                        <p class="text-fluid">
+                            <i class="fa fa-info-circle" aria-hidden="true"></i> The following module saves your messages on the Google App Engine Datastore. Insert your personal message and an personal encryption key.</p>
+                        <form action="/" id="encryptForm">
+                            <div  class="message-form md-form">
+                                <i class="fa fa-envelope prefix"></i>
+                                <input type="text" class="form-control"  id="message" name="message"/>
+                                <label for="message" class="label-fluid">Message </label>
+                            </div>
+                            <div  class=" message-form md-form">
+                                <i class="fa fa-key prefix"></i>
+                                <input type="text" class="form-control"  id="encryption_key" name="encryption_key"/>
+                                <label for="encryption_key" class="label-fluid">Encryption Key</label>
+                            </div>
+                            <button type="Submit" class="btn unique-color">Insert </button>
+                            <div class="showbox message-showbox">
+                                <div class="loader">
+                                    <svg class="circular" viewBox="25 25 50 50">
+                                        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </form>
+                        <h4 class="h3-responsive">The data that will be sent</h4>
+                        <p class="text-fluid">{message:"<span id="message-preview"></span>", encryption_key:"<span id="encryption-preview"></span>"}</p>
+                        <h4 class="h3-responsive">HTTP Response</h4>
+                        <p class="text-fluid" id="message-response"> - </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <h4 class="card-header pink darken-4 white-text"><i class="fa fa-search header-icon" aria-hidden="true"></i> Search your messages (/decrypt)</h4>
+                    <div class="card-block">
+                        <p class="text-fluid">
+                            <i class="fa fa-info-circle" aria-hidden="true"></i> Search your messages based on text and using the encryption key that was used to store them.</p>
+                        <form action="/" id="searchForm">
+                            <div  class="message-form md-form">
+                                <i class="fa fa-file-text-o prefix"></i>
+                                <input type="text" class="form-control"  id="search-text" name="search-text"/>
+                                <label for="search-text" class="label-fluid">Text</label>
+                            </div>
+                            <div  class=" message-form md-form">
+                                <i class="fa fa-key prefix"></i>
+                                <input type="text" class="form-control"  id="decryption_key" name="decryption_key"/>
+                                <label for="decryption_key" class="label-fluid">Decryption Key</label>
+                            </div>
+                            <button type="Submit" class="btn pink darken-4">Search </button>
+                            <div class="showbox search-showbox">
+                                <div class="loader">
+                                    <svg class="circular" viewBox="25 25 50 50">
+                                        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </form>
+                        <h4 class="h3-responsive">The data that will be sent</h4>
+                        <p class="text-fluid">{search:"<span id="search-text-preview"></span>", decryption_key:"<span id="decryption-preview"></span>"}</p>
+                        <h4 class="h3-responsive">HTTP Response</h4>
+                        <p class="text-fluid" id="search-response"> - </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <h4 class="card-header teal darken-4 white-text"><i class="fa fa-random header-icon" aria-hidden="true"></i> Find anagrams of your messages (/findanagram)</h4>
+                    <div class="card-block">
+                        <p class="text-fluid">
+                            <i class="fa fa-info-circle" aria-hidden="true"></i> Search an anagram of some of your messages combined with the encryption key that was used to store it.
+                            e.g.: if <strong>test</strong> was stored try to find it using <strong>estt</strong></p>
+                        <form action="/" id="anagramForm">
+                            <div  class="message-form md-form">
+                                <i class="fa fa-clone prefix" aria-hidden="true"></i>
+                                <input type="text" class="form-control"  id="anagram-text" name="search-text"/>
+                                <label for="anagram-text" class="label-fluid">Anagram </label>
+                            </div>
+                            <div  class=" message-form md-form">
+                                <i class="fa fa-key prefix"></i>
+                                <input type="text" class="form-control"  id="anagram-decryption_key" name="decryption_key"/>
+                                <label for="anagram-decryption_key" class="label-fluid">Decryption Key</label>
+                            </div>
+                            <button type="Submit" class="btn teal darken-4">Find</button>
+                            <div class="showbox anagram-showbox">
+                                <div class="loader">
+                                    <svg class="circular" viewBox="25 25 50 50">
+                                        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </form>
+                        <h4 class="h3-responsive">The data that will be sent</h4>
+                        <p class="text-fluid">{find:"<span id="anagram-text-preview"></span>", decryption_key:"<span id="anagram-decryption-preview"></span>"}</p>
+                        <h4 class="h3-responsive">HTTP Response</h4>
+                        <p class="text-fluid" id="anagram-response"> - </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<span class="credits">
+    <span class="credits-text">Dr. Dimitris Vrakkas - Christoforos Nalmpantis</span><br>
+    <span class="credits-text"><i class="fa fa-university" aria-hidden="true"></i> Aristotle University of Thessaloniki - School of Informatics - PSP Internet & Worldwide Web</span>
+</span>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="../js/scripts.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/js/mdb.min.js"> </script>
+
+</body>
+</html>
