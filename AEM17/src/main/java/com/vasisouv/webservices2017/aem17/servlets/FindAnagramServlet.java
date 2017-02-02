@@ -26,7 +26,12 @@ public class FindAnagramServlet extends MainServlet {
         String decryptionKey = mapper.getDecryptionKeyFromJson(jsonObject);
 
         MessageDatasource datasource = new MessageDatasource();
-        List<Message> messagesList = datasource.findAnagram(searchText,decryptionKey, DatastoreServiceFactory.getDatastoreService());
+        List<Message> messagesList = null;
+        try {
+            messagesList = datasource.findAnagram(searchText, decryptionKey, DatastoreServiceFactory.getDatastoreService());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         buildAndSendResponse(resp, messagesList, KEY_ANAGRAM);
     }

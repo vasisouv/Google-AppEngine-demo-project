@@ -4,12 +4,10 @@ public class Message {
 
     private String text;
     private String id;
-    private String encryptionKey;
     private String decryptedMessage;
 
-    Message(String msg,String encryptionKey) {
+    Message(String msg) {
         this.text = msg;
-        this.encryptionKey = encryptionKey;
     }
 
     public String getText() {
@@ -24,12 +22,6 @@ public class Message {
     }
     String getId() {
         return id;
-    }
-    public String getKey() {
-        return encryptionKey;
-    }
-    public void setKey(String key) {
-        this.encryptionKey = key;
     }
 
     public String getDecryptedMessage() {

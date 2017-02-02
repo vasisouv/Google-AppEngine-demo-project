@@ -1,11 +1,11 @@
 package com.vasisouv.webservices2017.aem17.servlets;
 
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.repackaged.org.apache.commons.codec.digest.Crypt;
 import com.vasisouv.webservices2017.aem17.model.Message;
 import com.vasisouv.webservices2017.aem17.model.MessageDatasource;
 import com.vasisouv.webservices2017.aem17.model.MessageMapper;
 import com.vasisouv.webservices2017.aem17.utils.DesEncrypter;
-import com.vasisouv.webservices2017.aem17.utils.GeneralUtils;
 
 import org.json.JSONObject;
 
@@ -28,12 +28,16 @@ public class EncryptServlet extends MainServlet {
         JSONObject jsonObject = readRequest(req);
         MessageMapper mapper = new MessageMapper();
         Message message = mapper.getMessageFromJson(jsonObject);
-        DesEncrypter encrypter = new GeneralUtils().generateEncrypter();
+        String encryptionKey = mapper.getEncryptionKeyFromJson(jsonObject);
+
+        DesEncrypter encrypter = null;
         try {
+            encrypter = new DesEncrypter(encryptionKey.toUpperCase()+"ASJDBASHVFHBASBDASD");
             message.setText(encrypter.encrypt(message.getText()));
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         MessageDatasource datasource = new MessageDatasource();
         String msgKey = datasource.saveMessageToDatastore(message, DatastoreServiceFactory.getDatastoreService());
         message.setId(msgKey);

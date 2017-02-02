@@ -21,12 +21,14 @@ public class MessageMapper {
 
     public Message getMessageFromJson(JSONObject jsonObject) {
         String msg = JsonParser.getString(jsonObject, MESSAGE);
-        String encryptionKey = JsonParser.getString(jsonObject,ENCRYPTION_KEY);
-        return new Message(msg,encryptionKey);
+        return new Message(msg);
+    }
+    public String getEncryptionKeyFromJson(JSONObject jsonObject) {
+        return JsonParser.getString(jsonObject, ENCRYPTION_KEY);
     }
 
     public Message fromEntity(Entity entity) {
-        Message message = new Message((String) entity.getProperty(MessageDatasource.PROPERTY_TEXT),(String) entity.getProperty(MessageDatasource.ENCRYPTION_KEY));
+        Message message = new Message((String) entity.getProperty(MessageDatasource.PROPERTY_TEXT));
         message.setId(KeyFactory.keyToString(entity.getKey()));
         return message;
     }

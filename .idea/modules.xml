@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AEM17/AEM17.iml" filepath="$PROJECT_DIR$/AEM17/AEM17.iml" />
-      <module fileurl="file://$PROJECT_DIR$/WebServicesTemProject2017.iml" filepath="$PROJECT_DIR$/WebServicesTemProject2017.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Google-AppEngine-demo-project.iml" filepath="$PROJECT_DIR$/Google-AppEngine-demo-project.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

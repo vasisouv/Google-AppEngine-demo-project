@@ -10,6 +10,9 @@
     margin:1%;
     width:33%;
 }
+.btn{
+    vertical-align:top;
+}
 .card-header, .card-block{
     padding:20px;
 }
